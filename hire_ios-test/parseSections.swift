@@ -18,29 +18,24 @@ class parseSections: NSObject {
         
         do {
             let object = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-            if let dict = object as? [String: AnyObject] {
-                let citiesTo : NSArray = dict["citiesTo"] as! [[String:NSObject]]
+            if let dictionaryFromJSON = object as? [String: AnyObject] {
+                let citiesTo : NSArray = dictionaryFromJSON["citiesTo"] as! [[String:NSObject]]
                 for stationParsing in citiesTo {
-                    let temp = stationParsing["stations"] as! [[String:NSObject]]
+                    let numberOfSections = stationParsing["stations"] as! [[String:NSObject]]
                     var stations:[Station] = []
-                    for singleStation in temp {
+                    for singleStation in numberOfSections {
                         let instanceOfStation = Station(name: singleStation["stationTitle"] as! String, city: singleStation["cityTitle"] as! String, country: singleStation["countryTitle"] as! String, region: singleStation["regionTitle"] as! String)
                         stations.append(instanceOfStation)
                     }
-                    if let statToSection = stations.first {
-                        let section = Section(city: statToSection.city, country: statToSection.country, items: stations)
+                    if let stationToSection = stations.first {
+                        let section = Section(city: stationToSection.city, country: stationToSection.country, items: stations)
                         result.append(section)
                     }
                 }
             }
-        } catch {
-            
-        }
-
+        } catch { }
         return result
     }
-    
-    //MARK: blabla
     
     func getSectionsFrom() -> [Section] {
         var result = [Section]()
@@ -50,24 +45,22 @@ class parseSections: NSObject {
         
         do {
             let object = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-            if let dict = object as? [String: AnyObject] {
-                let citiesTo : NSArray = dict["citiesFrom"] as! [[String:NSObject]]
+            if let dictionaryFromJSON = object as? [String: AnyObject] {
+                let citiesTo : NSArray = dictionaryFromJSON["citiesFrom"] as! [[String:NSObject]]
                 for stationParsing in citiesTo {
-                    let temp = stationParsing["stations"] as! [[String:NSObject]]
+                    let numberOfSections = stationParsing["stations"] as! [[String:NSObject]]
                     var stations:[Station] = []
-                    for singleStation in temp {
+                    for singleStation in numberOfSections {
                         let instanceOfStation = Station(name: singleStation["stationTitle"] as! String, city: singleStation["cityTitle"] as! String, country: singleStation["countryTitle"] as! String, region: singleStation["regionTitle"] as! String)
                         stations.append(instanceOfStation)
                     }
-                    let statToSection = stations[0]
-                    let section = Section(city: statToSection.city, country: statToSection.country, items: stations)
-                    result.append(section)
+                    if let stationToSection = stations.first {
+                        let section = Section(city: stationToSection.city, country: stationToSection.country, items: stations)
+                        result.append(section)
+                    }
                 }
             }
-        } catch {
-            
-        }
-        
+        } catch { }
         return result
     }
 

@@ -7,19 +7,22 @@
 //  Copyright © 2016 Magafurov Aydar. All rights reserved.
 //
 
+
 import UIKit
 
 class ScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var navigationTitle: UINavigationItem!
     @IBOutlet weak var tableItems: UITableView!
-    
+   
     var searchController = UISearchController(searchResultsController: nil)
+    //станции для отображения при поиске
     var filteredStations = [Station] ()
     var sections = [Section]()
+    //для unwind segue - при клике (выборе) станции
     var stationToPass: Station?
+    //из предшествующего контроллера, для определения для каких станции контролер (отправления или прибытия)
     var postValue: String?
-    var flag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +32,13 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         definesPresentationContext = true
         tableItems.tableHeaderView = searchController.searchBar
         
-        //спарсить json
+        //тянем модель
         if self.postValue == "from" {
             navigationTitle.title = "Станция отправления"
             sections = parseSections().getSectionsFrom()
-            flag = true
         } else {
             navigationTitle.title = "Станция назначения"
             sections = parseSections().getSectionsTo()
-            flag = false
         }
         
         tableItems.delegate = self
@@ -69,7 +70,7 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableItems.dequeueReusableCellWithIdentifier("ScheduleItemCell") as! ScheduleItemCell
+        let cell = tableItems.dequeueReusableCellWithIdentifier("ScheduleItemCell") as! ScheduleItemCell
         var item: Station
         if searchController.active && searchController.searchBar.text! != "" {
             item = filteredStations[indexPath.row]
@@ -81,7 +82,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //выделили ячейку  
         var item: Station
         if searchController.active && searchController.searchBar.text! != "" {
             item = filteredStations[indexPath.row]
@@ -110,13 +110,14 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
         searchController.dismissViewControllerAnimated(true, completion: nil)
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteredStations = [Station] ()
-        for stat in sections {
-            var array = stat.items.filter {
-                s in return s.name.lowercaseString.containsString(searchText.lowercaseString)
+        for stationsInSection in sections {
+            let stations = stationsInSection.items.filter {
+                station in return station.name.lowercaseString.containsString(searchText.lowercaseString)
             }
-            filteredStations.appendContentsOf(array)
+            filteredStations.appendContentsOf(stations)
         }
         tableItems.reloadData()
     }
@@ -128,7 +129,6 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
                 controller.postValue = send
             }
         } else {
-            //searchController.active = false
             if segue.identifier == "saveChosenValue" {
                 stationToPass = sender as? Station
             }

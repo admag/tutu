@@ -21,23 +21,17 @@ class ChoiceViewController: UIViewController , UITextFieldDelegate{
         fromText.delegate = self
         toText.delegate = self
         
-        
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         return false
     }
     
+    //unwind segue
     @IBAction func saveChosenValue (segue: UIStoryboardSegue) {
         if let scheduleViewController = segue.sourceViewController as? ScheduleViewController {
             if let stationToWrite = scheduleViewController.stationToPass {
-                if scheduleViewController.flag {
+                if scheduleViewController.postValue == "from"  {
                     fromText.text = stationToWrite.name
                 } else  {
                     toText.text = stationToWrite.name
@@ -48,13 +42,11 @@ class ChoiceViewController: UIViewController , UITextFieldDelegate{
     
     @IBAction func pressFrom(sender: AnyObject) {
         performSegueWithIdentifier("choiceToSchedule", sender: "from")
-        
     }
 
     @IBAction func pressTo(sender: AnyObject) {
         performSegueWithIdentifier("choiceToSchedule", sender: "to")
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "choiceToSchedule" {

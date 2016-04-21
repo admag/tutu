@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		491CD7E61CC69B1F0045776B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491CD7E51CC69B1F0045776B /* AppDelegate.swift */; };
-		491CD7E81CC69B1F0045776B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491CD7E71CC69B1F0045776B /* ViewController.swift */; };
 		491CD7ED1CC69B1F0045776B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 491CD7EC1CC69B1F0045776B /* Assets.xcassets */; };
 		491CD7F01CC69B1F0045776B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491CD7EE1CC69B1F0045776B /* LaunchScreen.storyboard */; };
 		491CD7F81CC6A04C0045776B /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491CD7F71CC6A04C0045776B /* ScheduleViewController.swift */; };
@@ -26,7 +25,6 @@
 /* Begin PBXFileReference section */
 		491CD7E21CC69B1F0045776B /* hire_ios-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hire_ios-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		491CD7E51CC69B1F0045776B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		491CD7E71CC69B1F0045776B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		491CD7EC1CC69B1F0045776B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		491CD7EF1CC69B1F0045776B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		491CD7F11CC69B1F0045776B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 				491CD8021CC6C26D0045776B /* allStations.json */,
 				491CD7FD1CC6ABE70045776B /* Main.storyboard */,
 				491CD7E51CC69B1F0045776B /* AppDelegate.swift */,
-				491CD7E71CC69B1F0045776B /* ViewController.swift */,
 				491CD7EC1CC69B1F0045776B /* Assets.xcassets */,
 				491CD7EE1CC69B1F0045776B /* LaunchScreen.storyboard */,
 				491CD7F11CC69B1F0045776B /* Info.plist */,
@@ -169,7 +166,6 @@
 				491CD7F81CC6A04C0045776B /* ScheduleViewController.swift in Sources */,
 				491CD7FC1CC6A9030045776B /* ScheduleItemCell.swift in Sources */,
 				4940B5711CC75DE800D33A2A /* Section.swift in Sources */,
-				491CD7E81CC69B1F0045776B /* ViewController.swift in Sources */,
 				491CD8051CC6C8C50045776B /* Station.swift in Sources */,
 				4940B5771CC7C46400D33A2A /* AboutViewController.swift in Sources */,
 				491CD7E61CC69B1F0045776B /* AppDelegate.swift in Sources */,
